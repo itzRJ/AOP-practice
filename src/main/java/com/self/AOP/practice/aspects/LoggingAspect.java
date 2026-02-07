@@ -5,6 +5,7 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
@@ -12,7 +13,9 @@ import java.util.Arrays;
 /**
  * Aspect for logging method executions across the application.
  * Provides execution time tracking and detailed method information.
+ * Enables logging based on the 'logging.aspect.enabled' property.
  */
+@ConditionalOnProperty(name = "logging.aspect.enabled", havingValue = "true")
 @Component
 @Aspect
 public class LoggingAspect {
